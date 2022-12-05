@@ -27,11 +27,30 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: _formType == FormType.login ? Text('Login') : Text('Register'),
+        title: _formType == FormType.login
+            ? Text('Login')
+            : _formType == FormType.register
+                ? Text('Register')
+                : Text('Admin Login'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              setState(() {
+                _formType = FormType.admin;
+              });
+            },
+            child:
+                Text('Login as Admin', style: TextStyle(color: Colors.white)),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: _formType == FormType.login ? loginForm() : registerForm(),
+        child: _formType == FormType.login
+            ? loginForm()
+            : _formType == FormType.register
+                ? registerForm()
+                : adminForm(),
       ),
     );
   }
@@ -77,7 +96,7 @@ class _LoginViewState extends State<LoginView> {
             });
           },
           child: Text('Does not have an account?'),
-        )
+        ),
       ]),
     );
   }
@@ -149,8 +168,54 @@ class _LoginViewState extends State<LoginView> {
               _formType = FormType.login;
             });
           },
-          child: Text('Login'),
+          child: Text('Login as Siswa'),
         )
+      ]),
+    );
+  }
+
+  Form adminForm() {
+    return Form(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      key: formKey,
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        TextFormField(
+          controller: unameCtr,
+          validator: (value) {
+            return (value == null || value.isEmpty)
+                ? 'Please Enter Username'
+                : null;
+          },
+          decoration: inputDecoration('Username', Icons.person),
+        ),
+        SizedBox(
+          height: 8,
+        ),
+        TextFormField(
+          validator: (value) {
+            return (value == null || value.isEmpty)
+                ? 'Please Enter Password'
+                : null;
+          },
+          controller: passwordCtr,
+          decoration: inputDecoration('Password', Icons.lock),
+        ),
+        ElevatedButton(
+          onPressed: () async {
+            if (formKey.currentState?.validate() ?? false) {
+              await _viewModel.loginAdmin(unameCtr.text, passwordCtr.text);
+            }
+          },
+          child: Text('Login as Admin'),
+        ),
+        TextButton(
+          onPressed: () {
+            setState(() {
+              _formType = FormType.login;
+            });
+          },
+          child: Text('Login as Siswa'),
+        ),
       ]),
     );
   }
@@ -186,4 +251,4 @@ InputDecoration inputDecoration(String labelText, IconData iconData,
   );
 }
 
-enum FormType { login, register }
+enum FormType { login, register, admin }

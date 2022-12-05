@@ -36,6 +36,25 @@ class LoginController extends GetxController {
     }
   }
 
+  Future<void> loginAdmin(String uname, String password) async {
+    final response = await _loginService
+        .adminLogin(LoginRequestModel(uname: uname, password: password));
+
+    if (response != null) {
+      Message dataUser = Message.fromJson(response.message!.toJson());
+      Get.offAndToNamed(Routes.ADMIN);
+    } else {
+      /// Show user a dialog about the error response
+      Get.defaultDialog(
+          middleText: 'User not found!',
+          textConfirm: 'OK',
+          confirmTextColor: Colors.white,
+          onConfirm: () {
+            Get.back();
+          });
+    }
+  }
+
   Future<void> registerUser(String uname, String email, String password) async {
     final response = await _loginService.fetchRegister(
         RegisterRequestModel(uname: uname, email: email, password: password));

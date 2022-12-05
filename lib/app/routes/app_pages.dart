@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import 'package:self_care_app/app/modules/admin/bindings/admin_binding.dart';
+import 'package:self_care_app/app/modules/admin/views/admin_view.dart';
 import 'package:self_care_app/app/modules/home/bindings/home_binding.dart';
 import 'package:self_care_app/app/modules/home/views/home_view.dart';
 import 'package:self_care_app/app/modules/login/bindings/login_binding.dart';
@@ -36,6 +38,11 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => LoginView(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADMIN,
+      page: () => AdminView(),
+      binding: AdminBinding(),
     ),
   ];
 }

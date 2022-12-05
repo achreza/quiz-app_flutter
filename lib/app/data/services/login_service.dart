@@ -9,10 +9,21 @@ import '../dto/responses/register_response.dart';
 
 class LoginService extends GetConnect {
   final String loginUrl = '${apiBaseUrl}loginSiswa';
+  final String loginAdminUrl = '${apiBaseUrl}loginAdmin';
   final String registerUrl = '${apiBaseUrl}daftarSiswa';
 
   Future<LoginResponseModel?> fetchLogin(LoginRequestModel model) async {
     final response = await post(loginUrl, model.toJson());
+
+    if (response.statusCode == HttpStatus.ok) {
+      return LoginResponseModel.fromJson(response.body);
+    } else {
+      return null;
+    }
+  }
+
+  Future<LoginResponseModel?> adminLogin(LoginRequestModel model) async {
+    final response = await post(loginAdminUrl, model.toJson());
 
     if (response.statusCode == HttpStatus.ok) {
       return LoginResponseModel.fromJson(response.body);
