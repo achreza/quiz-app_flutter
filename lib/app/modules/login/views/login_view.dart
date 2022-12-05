@@ -88,18 +88,32 @@ class _LoginViewState extends State<LoginView> {
       key: formKey,
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         TextFormField(
+          controller: unameCtr,
+          validator: (value) {
+            return (value == null || value.isEmpty)
+                ? 'Please Enter Username'
+                : null;
+          },
+          decoration: inputDecoration('Username', Icons.person),
+        ),
+        SizedBox(
+          height: 8,
+        ),
+        TextFormField(
+          keyboardType: TextInputType.emailAddress,
           controller: emailCtr,
           validator: (value) {
             return (value == null || value.isEmpty)
                 ? 'Please Enter Email'
                 : null;
           },
-          decoration: inputDecoration('E-mail', Icons.person),
+          decoration: inputDecoration('E-mail', Icons.email),
         ),
         SizedBox(
           height: 8,
         ),
         TextFormField(
+          keyboardType: TextInputType.visiblePassword,
           validator: (value) {
             return (value == null || value.isEmpty)
                 ? 'Please Enter Password'
@@ -112,6 +126,7 @@ class _LoginViewState extends State<LoginView> {
           height: 8,
         ),
         TextFormField(
+          keyboardType: TextInputType.visiblePassword,
           validator: (value) {
             return (value == null || value.isEmpty || value != passwordCtr.text)
                 ? 'Passwords does not match'
@@ -122,7 +137,8 @@ class _LoginViewState extends State<LoginView> {
         ElevatedButton(
           onPressed: () async {
             if (formKey.currentState?.validate() ?? false) {
-              await _viewModel.registerUser(emailCtr.text, passwordCtr.text);
+              await _viewModel.registerUser(
+                  unameCtr.text, emailCtr.text, passwordCtr.text);
             }
           },
           child: Text('Register'),

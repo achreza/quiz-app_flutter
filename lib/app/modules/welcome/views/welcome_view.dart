@@ -34,15 +34,10 @@ class WelcomeView extends GetView<WelcomeController> {
                   ),
                   Text("Enter your informations below"),
                   Spacer(), // 1/6
-                  TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFF1C2341),
-                      hintText: "Full Name",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                      ),
-                    ),
+                  Text(
+                    "${controller.datauser.uname}",
+                    style: Theme.of(context).textTheme.headline4!.copyWith(
+                        color: Colors.white, fontWeight: FontWeight.w500),
                   ),
                   Spacer(), // 1/6
                   InkWell(

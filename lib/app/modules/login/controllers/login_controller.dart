@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:self_care_app/app/data/dto/requests/login_request.dart';
 import 'package:self_care_app/app/data/dto/requests/register_request.dart';
+import 'package:self_care_app/app/data/models/user.dart';
 import 'package:self_care_app/app/data/services/login_service.dart';
 import 'package:self_care_app/app/routes/app_pages.dart';
 
@@ -21,8 +22,8 @@ class LoginController extends GetxController {
         .fetchLogin(LoginRequestModel(uname: uname, password: password));
 
     if (response != null) {
-      /// Set isLogin to true
-      Get.offAndToNamed(Routes.WELCOME);
+      Message dataUser = Message.fromJson(response.message!.toJson());
+      Get.offAndToNamed(Routes.WELCOME, arguments: dataUser);
     } else {
       /// Show user a dialog about the error response
       Get.defaultDialog(
@@ -35,13 +36,12 @@ class LoginController extends GetxController {
     }
   }
 
-  Future<void> registerUser(String email, String password) async {
-    final response = await _loginService
-        .fetchRegister(RegisterRequestModel(email: email, password: password));
+  Future<void> registerUser(String uname, String email, String password) async {
+    final response = await _loginService.fetchRegister(
+        RegisterRequestModel(uname: uname, email: email, password: password));
 
     if (response != null) {
-      /// Set isLogin to true
-      Get.offAndToNamed(Routes.WELCOME);
+      Get.offAndToNamed(Routes.LOGIN);
     } else {
       /// Show user a dialog about the error response
       Get.defaultDialog(
