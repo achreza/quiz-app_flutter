@@ -12,3 +12,4 @@ const kPrimaryGradient = LinearGradient(
 );
 
 const double kDefaultPadding = 20.0;
+const apiBaseUrl = 'https://quis1.000webhostapp.com/api/';

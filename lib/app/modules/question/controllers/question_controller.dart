@@ -16,6 +16,8 @@ class QuestionController extends GetxController
   PageController? _pageController;
   PageController? get pageController => this._pageController;
 
+  List<int>? kumpulanJawaban;
+
   List<Question> _questions = sample_data
       .map(
         (question) => Question(
@@ -80,6 +82,8 @@ class QuestionController extends GetxController
     // _selectedAns = selectedIndex;
 
     // if (_correctAns == _selectedAns) _numOfCorrectAns++;
+
+    kumpulanJawaban = [selectedIndex];
 
     if (selectedIndex == 0) {
       totalPoint.value += 4;
