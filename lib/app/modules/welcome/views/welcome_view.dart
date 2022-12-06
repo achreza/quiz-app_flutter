@@ -41,7 +41,8 @@ class WelcomeView extends GetView<WelcomeController> {
                   ),
                   Spacer(), // 1/6
                   InkWell(
-                    onTap: () => Get.offAndToNamed(Routes.QUESTION),
+                    onTap: () => Get.offAndToNamed(Routes.QUESTION,
+                        arguments: controller.datauser),
                     child: Container(
                       width: double.infinity,
                       alignment: Alignment.center,

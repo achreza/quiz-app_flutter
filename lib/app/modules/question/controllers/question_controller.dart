@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:self_care_app/app/data/dto/requests/save_quiz_request.dart';
+import 'package:self_care_app/app/data/models/user.dart';
 import 'package:self_care_app/app/data/models/question.dart';
+import 'package:self_care_app/app/data/services/quiz_service.dart';
+import 'package:self_care_app/app/routes/app_pages.dart';
 
 import '../views/score_screen.dart';
 
@@ -10,13 +14,15 @@ class QuestionController extends GetxController
 
   AnimationController? _animationController;
   Animation? _animation;
+  QuizService? quizService;
   // so that we can access our animation outside
   Animation? get animation => this._animation;
+  Message? datauser = Get.arguments;
 
   PageController? _pageController;
   PageController? get pageController => this._pageController;
 
-  List<int>? kumpulanJawaban;
+  List<int> kumpulanJawaban = [];
 
   List<Question> _questions = sample_data
       .map(
@@ -49,8 +55,6 @@ class QuestionController extends GetxController
   // called immediately after the widget is allocated memory
   @override
   void onInit() {
-    // Our animation duration is 60 s
-    // so our plan is to fill the progress bar within 60s
     _animationController =
         AnimationController(duration: Duration(seconds: 60), vsync: this);
     _animation = Tween<double>(begin: 0, end: 1).animate(_animationController!)
@@ -63,6 +67,7 @@ class QuestionController extends GetxController
     // Once 60s is completed go to the next qn
     _animationController!.forward().whenComplete(nextQuestion);
     _pageController = PageController();
+    quizService = Get.put<QuizService>(QuizService());
     super.onInit();
   }
 
@@ -75,15 +80,9 @@ class QuestionController extends GetxController
   }
 
   void checkAns(Question question, int selectedIndex) {
-    // because once user press any option then it will run
     _isAnswered = true;
 
     _correctAns = selectedIndex;
-    // _selectedAns = selectedIndex;
-
-    // if (_correctAns == _selectedAns) _numOfCorrectAns++;
-
-    kumpulanJawaban = [selectedIndex];
 
     if (selectedIndex == 0) {
       totalPoint.value += 4;
@@ -95,10 +94,13 @@ class QuestionController extends GetxController
       totalPoint.value += 1;
     }
 
+    //nambah tiap jawaban
+    kumpulanJawaban.add(selectedIndex);
     // It will stop the counter
     _animationController!.stop();
     update();
     print("${totalPoint.value}}");
+
     // Once user select an ans after 3s it will go to the next qn
     Future.delayed(Duration(milliseconds: 500), () {
       nextQuestion();
@@ -119,7 +121,40 @@ class QuestionController extends GetxController
       _animationController!.forward().whenComplete(nextQuestion);
     } else {
       // Get package provide us simple way to naviigate another page
+      saveQuiz();
       Get.to(ScoreScreen());
+    }
+  }
+
+  Future<void> saveQuiz() async {
+    var model = SaveQuizRequestModel(
+      idSiswa: int.parse(datauser!.id!),
+      jawaban: kumpulanJawaban.toString(),
+      totalSkor: totalPoint.value,
+    );
+    print(model.toJson());
+    final response = await quizService!.saveQuiz(model);
+    print(response);
+
+    if (response != null) {
+      Get.defaultDialog(
+          middleText: 'Data Berhasil Disimpan',
+          textConfirm: 'OK',
+          confirmTextColor: Colors.white,
+          onConfirm: () {
+            Get.back();
+          });
+
+      // Get.offAndToNamed(Routes.WELCOME, arguments: datauser);
+    } else {
+      /// Show user a dialog about the error response
+      Get.defaultDialog(
+          middleText: 'Data gagal disimpan',
+          textConfirm: 'OK',
+          confirmTextColor: Colors.white,
+          onConfirm: () {
+            Get.back();
+          });
     }
   }
 

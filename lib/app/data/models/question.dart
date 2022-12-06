@@ -183,7 +183,7 @@ const List sample_data = [
   },
   {
     "id": 16,
-    "question": "_____",
+    "question": "Saya bersyukur atas kelebihan yang saya miliki ",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -194,7 +194,7 @@ const List sample_data = [
   },
   {
     "id": 17,
-    "question": "_____",
+    "question": "Saya mencari cara untuk menanggulangi kekurangan saya",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -205,7 +205,7 @@ const List sample_data = [
   },
   {
     "id": 18,
-    "question": "_____",
+    "question": "Saya mengakui kesalahan diri sendiri",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -216,7 +216,7 @@ const List sample_data = [
   },
   {
     "id": 19,
-    "question": "_____",
+    "question": "Saya merasa senang dengan penampilan saya selama ini",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -227,7 +227,7 @@ const List sample_data = [
   },
   {
     "id": 20,
-    "question": "_____",
+    "question": "Saya tidak minder dengan diri saya",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -238,7 +238,8 @@ const List sample_data = [
   },
   {
     "id": 21,
-    "question": "_____",
+    "question":
+        "Saya tidak mempedulikan orang yang membicarakan kekurangan saya",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -249,7 +250,7 @@ const List sample_data = [
   },
   {
     "id": 22,
-    "question": "_____",
+    "question": "Saya tidak mau merendahkan diri saya sendiri",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -260,7 +261,7 @@ const List sample_data = [
   },
   {
     "id": 23,
-    "question": "_____",
+    "question": "Saya bahagia dengan segala sesuatu yang saya miliki",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -271,7 +272,8 @@ const List sample_data = [
   },
   {
     "id": 24,
-    "question": "_____",
+    "question":
+        "Saya fokus untuk mengembangkan kelebihan atau potensi diri saya ",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -282,7 +284,7 @@ const List sample_data = [
   },
   {
     "id": 25,
-    "question": "_____",
+    "question": "Saya puas menjadi diri saya sendiri",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -293,7 +295,7 @@ const List sample_data = [
   },
   {
     "id": 26,
-    "question": "_____",
+    "question": "Saya percaya dengan diri saya sendiri",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -304,7 +306,7 @@ const List sample_data = [
   },
   {
     "id": 27,
-    "question": "_____",
+    "question": "Saya terus memperbaiki diri kearah yang lebih baik lagi",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -315,7 +317,7 @@ const List sample_data = [
   },
   {
     "id": 28,
-    "question": "_____",
+    "question": "Saya berlatih untuk mengoptimalkan kemampuan yang saya miliki",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -326,7 +328,7 @@ const List sample_data = [
   },
   {
     "id": 29,
-    "question": "_____",
+    "question": "Saya tidak peduli dengan omongan orang lain",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -337,7 +339,7 @@ const List sample_data = [
   },
   {
     "id": 30,
-    "question": "_____",
+    "question": "Saya makan dengan teratur",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -348,7 +350,7 @@ const List sample_data = [
   },
   {
     "id": 31,
-    "question": "_____",
+    "question": "Saya istirahat 8-9 jam sehari",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -359,7 +361,7 @@ const List sample_data = [
   },
   {
     "id": 32,
-    "question": "_____",
+    "question": "saya makan makanan 4 sehat 5 sempurna",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -370,7 +372,7 @@ const List sample_data = [
   },
   {
     "id": 33,
-    "question": "_____",
+    "question": "Saya berpenampilan rapi dan wangi ",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -381,7 +383,7 @@ const List sample_data = [
   },
   {
     "id": 34,
-    "question": "_____",
+    "question": "Saya dapat menenangkan diri ketika merasa cemas atau gelisah",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -392,7 +394,7 @@ const List sample_data = [
   },
   {
     "id": 35,
-    "question": "_____",
+    "question": "Saya menghibur diri sendiri ketika stress",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -403,7 +405,7 @@ const List sample_data = [
   },
   {
     "id": 36,
-    "question": "_____",
+    "question": "Saya minum obat saat sakit ",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -414,7 +416,7 @@ const List sample_data = [
   },
   {
     "id": 37,
-    "question": "_____",
+    "question": "Saya melakukan apa yang membuat saya bahagia",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -425,7 +427,7 @@ const List sample_data = [
   },
   {
     "id": 38,
-    "question": "_____",
+    "question": "Saya membeli apa pun yang membuat saya senang",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -436,7 +438,7 @@ const List sample_data = [
   },
   {
     "id": 39,
-    "question": "_____",
+    "question": "Saya senang ketika bermain dengan teman-teman.",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -447,7 +449,8 @@ const List sample_data = [
   },
   {
     "id": 40,
-    "question": "_____",
+    "question":
+        "Saya memuji diri sendiri setelah berhasil melewati suatu masalah",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -458,7 +461,7 @@ const List sample_data = [
   },
   {
     "id": 41,
-    "question": "_____",
+    "question": "Saya meluangkan waktu untuk diri sendiri",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -469,7 +472,7 @@ const List sample_data = [
   },
   {
     "id": 42,
-    "question": "_____",
+    "question": "Saya menyemangati di sendiri di depan kaca",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -480,7 +483,7 @@ const List sample_data = [
   },
   {
     "id": 43,
-    "question": "_____",
+    "question": "Saya bersikap jujur dengan diri sendiri",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -491,7 +494,7 @@ const List sample_data = [
   },
   {
     "id": 44,
-    "question": "_____",
+    "question": "Saya menghiraukan orang yang menggosipkan saya",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -502,7 +505,7 @@ const List sample_data = [
   },
   {
     "id": 45,
-    "question": "_____",
+    "question": "Saya mengucapkan kata-kata positif setiap pagi hari ",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -513,7 +516,8 @@ const List sample_data = [
   },
   {
     "id": 46,
-    "question": "_____",
+    "question":
+        "Saya mengucapkan kata-kata positif ketika akan melakukan suatu kegiatan. ",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
@@ -524,282 +528,8 @@ const List sample_data = [
   },
   {
     "id": 47,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 48,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 49,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 50,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 51,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 52,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 53,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 54,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 55,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 56,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 57,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 58,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 59,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 60,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 61,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 62,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 63,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 64,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 65,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 66,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 67,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 68,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 69,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 70,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 71,
-    "question": "_____",
-    "options": [
-      'Sangat Sesuai',
-      'Sesuai',
-      'Tidak Sesuai',
-      'Sangat Tidak Sesuai'
-    ],
-    "answer_index": 1,
-  },
-  {
-    "id": 72,
-    "question": "_____",
+    "question":
+        "Saya selalu berpikir positif saat mengerjakan sesuatu atau menunggu suatu hasil.",
     "options": [
       'Sangat Sesuai',
       'Sesuai',
