@@ -11,14 +11,14 @@ class ResetPasswordView extends GetView<AdminController> {
       child: Obx(() => controller.isLoading.value
           ? CircularProgressIndicator()
           : ListView.builder(
-              itemCount: controller.datas!.message!.length,
+              itemCount: controller.siswaDatas!.message!.length,
               itemBuilder: (context, index) {
                 return Card(
                   child: ListTile(
-                    title: Text(
-                        controller.datas!.message![index].uname.toString()),
-                    subtitle: Text(
-                        controller.datas!.message![index].email.toString()),
+                    title: Text(controller.siswaDatas!.message![index].uname
+                        .toString()),
+                    subtitle: Text(controller.siswaDatas!.message![index].email
+                        .toString()),
                     trailing: IconButton(
                       icon: Icon(Icons.lock_reset),
                       onPressed: () {

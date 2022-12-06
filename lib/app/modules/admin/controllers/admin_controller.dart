@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:self_care_app/app/data/dto/responses/list_pengisi.dart';
 import 'package:self_care_app/app/data/models/list_siswa.dart';
+import 'package:self_care_app/app/data/services/quiz_service.dart';
 import 'package:self_care_app/app/data/services/siswa_service.dart';
 import 'package:self_care_app/app/modules/admin/views/pengisi_view.dart';
 import 'package:self_care_app/app/modules/admin/views/reset_password_view.dart';
@@ -13,9 +15,11 @@ class AdminController extends GetxController
 
   var isLoading = true.obs;
 
-  ListSiswaModel? datas;
+  ListSiswaModel? siswaDatas;
+  ListPengisiModel? pengisiDatas;
 
   SiswaService? _siswaService;
+  QuizService? _quizService;
 
   final RxInt tabIndex = 0.obs;
   late TabController tabController;
@@ -44,7 +48,7 @@ class AdminController extends GetxController
     ListSiswaModel? response = await _siswaService!.getAllData();
 
     if (response != null) {
-      datas = response;
+      siswaDatas = response;
     } else {
       /// Show user a dialog about the error response
       Get.defaultDialog(
@@ -58,7 +62,26 @@ class AdminController extends GetxController
     isLoading.value = false;
   }
 
+  Future<void> getAllPengisi() async {
+    ListPengisiModel? response = await _quizService!.getAllPengisi();
+
+    if (response != null) {
+      pengisiDatas = response;
+    } else {
+      /// Show user a dialog about the error response
+      Get.defaultDialog(
+          middleText: 'Pengisi not found!',
+          textConfirm: 'OK',
+          confirmTextColor: Colors.white,
+          onConfirm: () {
+            Get.back();
+          });
+    }
+    isLoading.value = false;
+  }
+
   void fetchAllData() async {
+    await getAllPengisi();
     await getAllSiswa();
   }
 
@@ -67,6 +90,7 @@ class AdminController extends GetxController
     super.onInit();
     tabController = TabController(length: pages.length, vsync: this);
     _siswaService = Get.put(SiswaService());
+    _quizService = Get.put(QuizService());
     fetchAllData();
   }
 
