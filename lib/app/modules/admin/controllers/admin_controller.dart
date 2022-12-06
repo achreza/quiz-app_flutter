@@ -30,6 +30,16 @@ class AdminController extends GetxController
     tabController.animateTo(index);
   }
 
+  void logOut() {
+    Get.defaultDialog(
+        middleText: 'Anda Telah Logout dari Admin',
+        textConfirm: 'OK',
+        confirmTextColor: Colors.white,
+        onConfirm: () {
+          Get.offAllNamed('/login');
+        });
+  }
+
   Future<void> getAllSiswa() async {
     ListSiswaModel? response = await _siswaService!.getAllData();
 

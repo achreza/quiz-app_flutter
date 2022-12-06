@@ -8,6 +8,17 @@ class AdminView extends GetView<AdminController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Halaman Admin'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              controller.logOut();
+            },
+          ),
+        ],
+      ),
       body: TabBarView(
         controller: controller.tabController,
         physics: NeverScrollableScrollPhysics(),
