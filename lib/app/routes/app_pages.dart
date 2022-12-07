@@ -9,6 +9,7 @@ import 'package:self_care_app/app/modules/login/views/login_view.dart';
 import 'package:self_care_app/app/modules/question/bindings/question_binding.dart';
 import 'package:self_care_app/app/modules/question/views/question_view.dart';
 import 'package:self_care_app/app/modules/welcome/bindings/welcome_binding.dart';
+import 'package:self_care_app/app/modules/welcome/views/welcome_nav.dart';
 import 'package:self_care_app/app/modules/welcome/views/welcome_view.dart';
 
 part 'app_routes.dart';
@@ -31,7 +32,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.WELCOME,
-      page: () => WelcomeView(),
+      page: () => WelcomeNavigation(),
       binding: WelcomeBinding(),
     ),
     GetPage(

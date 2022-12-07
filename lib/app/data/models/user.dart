@@ -31,8 +31,18 @@ class Message {
   String? email;
   String? nisn;
   String? jk;
+  String? kelas;
+  String? sekolah;
 
-  Message({this.id, this.uname, this.password, this.email, this.nisn, this.jk});
+  Message(
+      {this.id,
+      this.uname,
+      this.password,
+      this.email,
+      this.nisn,
+      this.jk,
+      this.kelas,
+      this.sekolah});
 
   Message.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -41,6 +51,8 @@ class Message {
     email = json['email'];
     nisn = json['nisn'];
     jk = json['jk'];
+    kelas = json['kelas'];
+    sekolah = json['sekolah'];
   }
 
   Map<String, dynamic> toJson() {
@@ -51,6 +63,8 @@ class Message {
     data['email'] = this.email;
     data['nisn'] = this.nisn;
     data['jk'] = this.jk;
+    data['kelas'] = this.kelas;
+    data['sekolah'] = this.sekolah;
     return data;
   }
 }

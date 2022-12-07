@@ -53,7 +53,6 @@ class AdminController extends GetxController
       /// Show user a dialog about the error response
       showDialog("Siswa not Found");
     }
-    isLoading.value = false;
   }
 
   Future<void> getAllPengisi() async {
@@ -65,12 +64,12 @@ class AdminController extends GetxController
       /// Show user a dialog about the error response
       showDialog("Pengisi not Found");
     }
-    isLoading.value = false;
   }
 
   void fetchAllData() async {
     await getAllSiswa();
     await getAllPengisi();
+    isLoading.value = false;
   }
 
   void resetPassword(int id) async {

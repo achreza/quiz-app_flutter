@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:self_care_app/app/modules/question/controllers/question_controller.dart';
+import 'package:self_care_app/app/routes/app_pages.dart';
 import 'package:self_care_app/constant.dart';
 
 class ScoreScreen extends GetView<QuestionController> {
@@ -47,6 +48,15 @@ class ScoreScreen extends GetView<QuestionController> {
                     .copyWith(color: kSecondaryColor),
               ),
               Spacer(flex: 3),
+              TextButton(
+                  onPressed: () {
+                    Get.offAndToNamed(Routes.WELCOME,
+                        arguments: controller.datauser);
+                  },
+                  child: Text(
+                    "Kembali ke menu utama",
+                    style: TextStyle(fontSize: 16),
+                  ))
             ],
           )
         ],

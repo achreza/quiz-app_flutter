@@ -30,8 +30,8 @@ class Message {
   String? datecreated;
   String? totalSkor;
   String? email;
-  Null? nisn;
-  Null? jk;
+  String? nisn;
+  String? jk;
 
   Message(
       {this.id,

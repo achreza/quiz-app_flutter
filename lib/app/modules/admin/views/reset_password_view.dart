@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:self_care_app/app/modules/admin/components/reset_password_card.dart';
 import 'package:self_care_app/app/modules/admin/controllers/admin_controller.dart';
+
+import '../../../data/models/list_siswa.dart';
 
 class ResetPasswordView extends GetView<AdminController> {
   @override
@@ -13,22 +16,8 @@ class ResetPasswordView extends GetView<AdminController> {
           : ListView.builder(
               itemCount: controller.siswaDatas!.message!.length,
               itemBuilder: (context, index) {
-                return Card(
-                  child: ListTile(
-                    title: Text(controller.siswaDatas!.message![index].uname
-                        .toString()),
-                    subtitle: Text(controller.siswaDatas!.message![index].email
-                        .toString()),
-                    trailing: IconButton(
-                      icon: Icon(Icons.lock_reset),
-                      onPressed: () {
-                        controller.resetPassword(int.parse(controller
-                            .siswaDatas!.message![index].id
-                            .toString()));
-                      },
-                    ),
-                  ),
-                );
+                return ResetPasswordCard(
+                    data: controller.siswaDatas!.message![index]);
               })),
     ));
   }
