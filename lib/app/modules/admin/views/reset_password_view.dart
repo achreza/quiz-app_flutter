@@ -22,7 +22,9 @@ class ResetPasswordView extends GetView<AdminController> {
                     trailing: IconButton(
                       icon: Icon(Icons.lock_reset),
                       onPressed: () {
-                        //
+                        controller.resetPassword(int.parse(controller
+                            .siswaDatas!.message![index].id
+                            .toString()));
                       },
                     ),
                   ),

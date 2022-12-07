@@ -51,13 +51,7 @@ class AdminController extends GetxController
       siswaDatas = response;
     } else {
       /// Show user a dialog about the error response
-      Get.defaultDialog(
-          middleText: 'Siswa not found!',
-          textConfirm: 'OK',
-          confirmTextColor: Colors.white,
-          onConfirm: () {
-            Get.back();
-          });
+      showDialog("Siswa not Found");
     }
     isLoading.value = false;
   }
@@ -69,20 +63,19 @@ class AdminController extends GetxController
       pengisiDatas = response;
     } else {
       /// Show user a dialog about the error response
-      Get.defaultDialog(
-          middleText: 'Pengisi not found!',
-          textConfirm: 'OK',
-          confirmTextColor: Colors.white,
-          onConfirm: () {
-            Get.back();
-          });
+      showDialog("Pengisi not Found");
     }
     isLoading.value = false;
   }
 
   void fetchAllData() async {
-    await getAllPengisi();
     await getAllSiswa();
+    await getAllPengisi();
+  }
+
+  void resetPassword(int id) async {
+    String message = await _siswaService!.resetPassword(id);
+    showDialog(message);
   }
 
   @override
@@ -94,6 +87,16 @@ class AdminController extends GetxController
     fetchAllData();
   }
 
+  void showDialog(String message) {
+    Get.defaultDialog(
+        middleText: message,
+        textConfirm: 'OK',
+        confirmTextColor: Colors.white,
+        onConfirm: () {
+          Get.back();
+        });
+  }
+
   @override
   void onReady() {
     super.onReady();
@@ -101,5 +104,4 @@ class AdminController extends GetxController
 
   @override
   void onClose() {}
-  void increment() => count.value++;
 }
