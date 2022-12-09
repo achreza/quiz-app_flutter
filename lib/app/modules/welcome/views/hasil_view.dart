@@ -33,7 +33,7 @@ class HasilView extends GetView<WelcomeController> {
                                 .hasilQuiz!.result![index].idQuiz
                                 .toString());
                             int idHasil = int.parse(controller
-                                .hasilQuiz!.result![index].idHasil
+                                .hasilQuiz!.result![index].indexAnswer
                                 .toString());
                             return ListTile(
                               leading: Text((index + 1).toString()),

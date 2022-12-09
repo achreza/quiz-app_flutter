@@ -9,6 +9,7 @@ abstract class Routes {
   static const WELCOME = _Paths.WELCOME;
   static const LOGIN = _Paths.LOGIN;
   static const ADMIN = _Paths.ADMIN;
+  static const PDF = _Paths.PDF;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const WELCOME = '/welcome';
   static const LOGIN = '/login';
   static const ADMIN = '/admin';
+  static const PDF = '/pdf';
 }
