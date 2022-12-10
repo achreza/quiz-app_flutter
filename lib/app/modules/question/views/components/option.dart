@@ -52,8 +52,8 @@ class Option extends StatelessWidget {
                     style: TextStyle(color: getTheRightColor(), fontSize: 16),
                   ),
                   Container(
-                    height: 26,
-                    width: 26,
+                    height: 15,
+                    width: 15,
                     decoration: BoxDecoration(
                       color: getTheRightColor() == kGrayColor
                           ? Colors.transparent

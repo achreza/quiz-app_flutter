@@ -6,6 +6,7 @@ import '../controllers/login_controller.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:self_care_app/constant.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -21,36 +22,92 @@ class _LoginViewState extends State<LoginView> {
   TextEditingController emailCtr = TextEditingController();
   TextEditingController passwordCtr = TextEditingController();
   TextEditingController unameCtr = TextEditingController();
-  FormType _formType = FormType.login;
+  FormType _formType = FormType.menu;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: _formType == FormType.login
-            ? Text('Login')
-            : _formType == FormType.register
-                ? Text('Register')
-                : Text('Admin Login'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              setState(() {
-                _formType = FormType.admin;
-              });
-            },
-            child:
-                Text('Login as Admin', style: TextStyle(color: Colors.white)),
-          ),
-        ],
-      ),
+      appBar: _formType == FormType.login
+          ? AppBar(
+              // title: _formType == FormType.login
+              //     ? Text('Login')
+              //     : _formType == FormType.register
+              //         ? Text('Register')
+              //         : Text('Admin Login'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      _formType = FormType.menu;
+                    });
+                  },
+                  child: Text('Kembali', style: TextStyle(color: Colors.white)),
+                ),
+              ],
+            )
+          : null,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
-        child: _formType == FormType.login
-            ? loginForm()
-            : _formType == FormType.register
-                ? registerForm()
-                : adminForm(),
+        child: _formType == FormType.menu
+            ? Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                alignment: Alignment.center,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _formType = FormType.login;
+                          });
+                        },
+                        child: Container(
+                          width: 300,
+                          height: 60,
+                          decoration: BoxDecoration(
+                              color: Color(0xFFffc300),
+                              borderRadius: BorderRadius.circular(5)),
+                          child: Center(
+                              child: Text('SISWA',
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      letterSpacing: 2,
+                                      fontWeight: FontWeight.w800))),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _formType = FormType.admin;
+                          });
+                        },
+                        child: Container(
+                          width: 300,
+                          height: 60,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(color: Color(0xFFffc300))),
+                          child: Center(
+                              child: Text(
+                            'ADMIN',
+                            style: TextStyle(
+                                fontSize: 24,
+                                letterSpacing: 2,
+                                fontWeight: FontWeight.w800),
+                          )),
+                        ),
+                      ),
+                    ]),
+              )
+            : _formType == FormType.login
+                ? loginForm()
+                : _formType == FormType.register
+                    ? registerForm()
+                    : adminForm(),
       ),
     );
   }
@@ -60,7 +117,14 @@ class _LoginViewState extends State<LoginView> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       key: formKey,
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Center(
+          child: Text('SISWA',
+              style: TextStyle(
+                  fontSize: 24, letterSpacing: 2, fontWeight: FontWeight.w800)),
+        ),
+        SizedBox(height: 10),
         TextFormField(
+          style: TextStyle(color: Colors.black),
           controller: unameCtr,
           validator: (value) {
             return (value == null || value.isEmpty)
@@ -73,6 +137,7 @@ class _LoginViewState extends State<LoginView> {
           height: 8,
         ),
         TextFormField(
+          style: TextStyle(color: Colors.black),
           validator: (value) {
             return (value == null || value.isEmpty)
                 ? 'Please Enter Password'
@@ -80,7 +145,9 @@ class _LoginViewState extends State<LoginView> {
           },
           controller: passwordCtr,
           decoration: inputDecoration('Password', Icons.lock),
+          obscureText: true,
         ),
+        SizedBox(height: 10),
         ElevatedButton(
           onPressed: () async {
             if (formKey.currentState?.validate() ?? false) {
@@ -95,7 +162,7 @@ class _LoginViewState extends State<LoginView> {
               _formType = FormType.register;
             });
           },
-          child: Text('Does not have an account?'),
+          child: Text('Daftar'),
         ),
       ]),
     );
@@ -106,7 +173,14 @@ class _LoginViewState extends State<LoginView> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       key: formKey,
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Center(
+          child: Text('DAFTAR',
+              style: TextStyle(
+                  fontSize: 24, letterSpacing: 2, fontWeight: FontWeight.w800)),
+        ),
+        SizedBox(height: 10),
         TextFormField(
+          style: TextStyle(color: Colors.black),
           controller: unameCtr,
           validator: (value) {
             return (value == null || value.isEmpty)
@@ -119,6 +193,7 @@ class _LoginViewState extends State<LoginView> {
           height: 8,
         ),
         TextFormField(
+          style: TextStyle(color: Colors.black),
           keyboardType: TextInputType.emailAddress,
           controller: emailCtr,
           validator: (value) {
@@ -132,6 +207,7 @@ class _LoginViewState extends State<LoginView> {
           height: 8,
         ),
         TextFormField(
+          style: TextStyle(color: Colors.black),
           keyboardType: TextInputType.visiblePassword,
           validator: (value) {
             return (value == null || value.isEmpty)
@@ -140,11 +216,13 @@ class _LoginViewState extends State<LoginView> {
           },
           controller: passwordCtr,
           decoration: inputDecoration('Password', Icons.lock),
+          obscureText: true,
         ),
         SizedBox(
           height: 8,
         ),
         TextFormField(
+          style: TextStyle(color: Colors.black),
           keyboardType: TextInputType.visiblePassword,
           validator: (value) {
             return (value == null || value.isEmpty || value != passwordCtr.text)
@@ -152,6 +230,7 @@ class _LoginViewState extends State<LoginView> {
                 : null;
           },
           decoration: inputDecoration('Retype Password', Icons.lock),
+          obscureText: true,
         ),
         ElevatedButton(
           onPressed: () async {
@@ -160,7 +239,7 @@ class _LoginViewState extends State<LoginView> {
                   unameCtr.text, emailCtr.text, passwordCtr.text);
             }
           },
-          child: Text('Register'),
+          child: Text('Daftar'),
         ),
         TextButton(
           onPressed: () {
@@ -168,7 +247,7 @@ class _LoginViewState extends State<LoginView> {
               _formType = FormType.login;
             });
           },
-          child: Text('Login as Siswa'),
+          child: Text('Login'),
         )
       ]),
     );
@@ -179,7 +258,14 @@ class _LoginViewState extends State<LoginView> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       key: formKey,
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Center(
+          child: Text('ADMIN',
+              style: TextStyle(
+                  fontSize: 24, letterSpacing: 2, fontWeight: FontWeight.w800)),
+        ),
+        SizedBox(height: 10),
         TextFormField(
+          style: TextStyle(color: Colors.black),
           controller: unameCtr,
           validator: (value) {
             return (value == null || value.isEmpty)
@@ -192,6 +278,7 @@ class _LoginViewState extends State<LoginView> {
           height: 8,
         ),
         TextFormField(
+          style: TextStyle(color: Colors.black),
           validator: (value) {
             return (value == null || value.isEmpty)
                 ? 'Please Enter Password'
@@ -199,22 +286,24 @@ class _LoginViewState extends State<LoginView> {
           },
           controller: passwordCtr,
           decoration: inputDecoration('Password', Icons.lock),
+          obscureText: true,
         ),
+        SizedBox(height: 10),
         ElevatedButton(
           onPressed: () async {
             if (formKey.currentState?.validate() ?? false) {
               await _viewModel.loginAdmin(unameCtr.text, passwordCtr.text);
             }
           },
-          child: Text('Login as Admin'),
+          child: Text('Login'),
         ),
         TextButton(
           onPressed: () {
             setState(() {
-              _formType = FormType.login;
+              _formType = FormType.menu;
             });
           },
-          child: Text('Login as Siswa'),
+          child: Text('Kembali'),
         ),
       ]),
     );
@@ -228,27 +317,28 @@ InputDecoration inputDecoration(String labelText, IconData iconData,
     helperText: helperText,
     labelText: labelText,
     labelStyle: TextStyle(color: Colors.grey),
-    fillColor: Colors.grey.shade200,
+    fillColor: Colors.white,
     filled: true,
     prefixText: prefix,
     prefixIcon: Icon(
       iconData,
       size: 20,
+      color: Colors.black,
     ),
     prefixIconConstraints: BoxConstraints(minWidth: 60),
     enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(color: Colors.black)),
     focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(color: Colors.black)),
     errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(color: Colors.black)),
     border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(color: Colors.black)),
   );
 }
 
-enum FormType { login, register, admin }
+enum FormType { login, register, admin, menu }

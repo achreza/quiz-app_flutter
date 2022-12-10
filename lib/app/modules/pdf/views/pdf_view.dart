@@ -8,7 +8,7 @@ class PdfView extends GetView<PdfController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PDF'),
+        title: Text('Hasil'),
         centerTitle: true,
       ),
       body: Obx(() => Center(
@@ -18,47 +18,123 @@ class PdfView extends GetView<PdfController> {
                     height: double.infinity,
                     child: Column(
                       children: [
-                        Text(
-                          "Total Skor : ${controller.hasilQuiz!.data!.totalSkor.toString()}",
-                          style: TextStyle(fontSize: 20),
+                        Container(
+                            width: 300,
+                            height: 50,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Text(
+                                "Nama : ${controller.detailSiswa!.nama.toString()}",
+                                style: TextStyle(color: Colors.black))),
+                        SizedBox(
+                          height: 5,
                         ),
                         Container(
-                          height: 500,
-                          child: ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount: controller.hasilQuiz!.result!.length,
-                              itemBuilder: (context, index) {
-                                int idQuiz = int.parse(controller
-                                    .hasilQuiz!.result![index].idQuiz
-                                    .toString());
-                                int idHasil = int.parse(controller
-                                    .hasilQuiz!.result![index].idHasil
-                                    .toString());
-                                return ListTile(
-                                  leading: Text((index + 1).toString()),
-                                  title: Text(controller
-                                      .questions[idQuiz - 1].question),
-                                  subtitle: Text(controller
-                                      .questions[idQuiz - 1].options[idHasil]),
-                                );
-                              }),
+                            width: 300,
+                            height: 50,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Text(
+                                "Tanggal Lahir : ${controller.detailSiswa!.tgl_lahir.toString()}",
+                                style: TextStyle(color: Colors.black))),
+                        SizedBox(
+                          height: 5,
                         ),
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: (() {
-                              controller.getPdf();
-                            }),
+                        Container(
+                            width: 300,
+                            height: 50,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Text(
+                                "Email : ${controller.detailSiswa!.email.toString()}",
+                                style: TextStyle(color: Colors.black))),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                            width: 300,
+                            height: 50,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Text(
+                                "Sekolah : ${controller.detailSiswa!.sekolah.toString()}",
+                                style: TextStyle(color: Colors.black))),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                            width: 300,
+                            height: 50,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Text(
+                                "NISN : ${controller.detailSiswa!.nisn.toString()}",
+                                style: TextStyle(color: Colors.black))),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                            width: 300,
+                            height: 50,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Text(
+                                "Kelas : ${controller.detailSiswa!.kelas.toString()}",
+                                style: TextStyle(color: Colors.black))),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                            width: 300,
+                            height: 50,
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Text(
+                                controller.detailSiswa!.jk.toString() == "L"
+                                    ? "Jenis Kelamin : Laki-Laki"
+                                    : "Jenis Kelamin :Perempuan",
+                                style: TextStyle(color: Colors.black))),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            controller.getPdf();
+                          },
+                          child: Center(
                             child: Container(
                               alignment: Alignment.center,
                               width: 300,
-                              height: 50,
-                              color: Colors.blue,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                  color: Color(0xFFffc300),
+                                  borderRadius: BorderRadius.circular(5)),
                               child: Text(
-                                "Hasil",
+                                "LIHAT PDF",
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700),
                               ),
                             ),
                           ),

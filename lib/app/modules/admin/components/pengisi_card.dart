@@ -13,7 +13,8 @@ class PengisiCard extends StatelessWidget {
     // TODO: implement build
     return Card(
       child: GestureDetector(
-        onTap: () => Get.toNamed(Routes.PDF, arguments: data),
+        onTap: () =>
+            Get.toNamed(Routes.PDF, arguments: data.idSiswa.toString()),
         child: ListTile(
           title: Text("${data.nisn.toString()}"),
           subtitle: Text(data.email.toString()),

@@ -15,7 +15,7 @@ class WelcomeNavigation extends GetView<WelcomeController> {
         () => BottomNavigationBar(
           currentIndex: controller.tabIndex.value,
           onTap: controller.changeTab,
-          backgroundColor: Colors.grey.shade100,
+          backgroundColor: Color(0xFFffc300),
           items: [
             BottomNavigationBarItem(
                 icon: Icon(Icons.quiz),

@@ -29,19 +29,18 @@ class Body extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Padding(
+              //   padding:
+              //       const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+              //   child: ProgressBar(),
+              // ),
+              // SizedBox(height: kDefaultPadding),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-                child: ProgressBar(),
-              ),
-              SizedBox(height: kDefaultPadding),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+                padding: const EdgeInsets.only(left: 10, right: 10),
                 child: Obx(
                   () => Text.rich(
                     TextSpan(
-                      text: "Question ${controller.questionNumber.value}",
+                      text: "Pertanyaan ${controller.questionNumber.value}",
                       style: Theme.of(context)
                           .textTheme
                           .headline4!
@@ -59,7 +58,6 @@ class Body extends StatelessWidget {
                   ),
                 ),
               ),
-              Divider(thickness: 1.5),
               SizedBox(height: kDefaultPadding),
               Expanded(
                 child: PageView.builder(

@@ -55,17 +55,17 @@ class QuestionController extends GetxController
   // called immediately after the widget is allocated memory
   @override
   void onInit() {
-    _animationController =
-        AnimationController(duration: Duration(seconds: 60), vsync: this);
-    _animation = Tween<double>(begin: 0, end: 1).animate(_animationController!)
-      ..addListener(() {
-        // update like setState
-        update();
-      });
+    // _animationController =
+    //     AnimationController(duration: Duration(seconds: 60), vsync: this);
+    // _animation = Tween<double>(begin: 0, end: 1).animate(_animationController!)
+    //   ..addListener(() {
+    //     // update like setState
+    //     update();
+    //   });
 
     // start our animation
     // Once 60s is completed go to the next qn
-    _animationController!.forward().whenComplete(nextQuestion);
+    // _animationController!.forward().whenComplete(nextQuestion);
     _pageController = PageController();
     quizService = Get.put<QuizService>(QuizService());
     super.onInit();
@@ -75,29 +75,57 @@ class QuestionController extends GetxController
   @override
   void onClose() {
     super.onClose();
-    _animationController!.dispose();
+    // _animationController!.dispose();
     _pageController!.dispose();
   }
 
   void checkAns(Question question, int selectedIndex) {
+    // print(_questionNumber);
+    int num = _questionNumber.toInt();
+    List<int> unfavorable = [
+      6,
+      14,
+      15,
+      16,
+      21,
+      26,
+      27,
+      35,
+      39,
+      40,
+      51,
+      64,
+      69,
+      75,
+      78,
+      80
+    ];
+    if (unfavorable.contains(num)) {
+      print('unfavorable');
+      totalPoint.value += selectedIndex + 1;
+    } else {
+      print('favorable');
+      if (selectedIndex == 0) {
+        totalPoint.value += 5;
+      } else if (selectedIndex == 1) {
+        totalPoint.value += 4;
+      } else if (selectedIndex == 2) {
+        totalPoint.value += 3;
+      } else if (selectedIndex == 3) {
+        totalPoint.value += 2;
+      } else if (selectedIndex == 4) {
+        totalPoint.value += 1;
+      }
+    }
+
     _isAnswered = true;
 
     _correctAns = selectedIndex;
 
-    if (selectedIndex == 0) {
-      totalPoint.value += 4;
-    } else if (selectedIndex == 1) {
-      totalPoint.value += 3;
-    } else if (selectedIndex == 2) {
-      totalPoint.value += 2;
-    } else if (selectedIndex == 3) {
-      totalPoint.value += 1;
-    }
-
     //nambah tiap jawaban
     kumpulanJawaban.add(selectedIndex);
     // It will stop the counter
-    _animationController!.stop();
+    // _animationController!.stop();
     update();
     print("${totalPoint.value}}");
 
@@ -114,11 +142,11 @@ class QuestionController extends GetxController
           .nextPage(duration: Duration(milliseconds: 250), curve: Curves.ease);
 
       // Reset the counter
-      _animationController!.reset();
+      // _animationController!.reset();
 
       // Then start it again
       // Once timer is finish go to the next qn
-      _animationController!.forward().whenComplete(nextQuestion);
+      // _animationController!.forward().whenComplete(nextQuestion);
     } else {
       // Get package provide us simple way to naviigate another page
       saveQuiz();
@@ -156,6 +184,7 @@ class QuestionController extends GetxController
             Get.back();
           });
     }
+    // _pageController!.dispose();
   }
 
   void updateTheQnNum(int index) {

@@ -5,6 +5,7 @@ import 'package:self_care_app/app/data/dto/requests/edit_data_siswa_request.dart
 import 'package:self_care_app/app/data/dto/requests/edit_password_siswa_request.dart';
 import 'package:self_care_app/app/data/dto/responses/reset_password_response.dart';
 import 'package:self_care_app/app/data/models/list_siswa.dart';
+import 'package:self_care_app/app/data/models/siswa.dart';
 import 'package:self_care_app/constant.dart';
 
 class SiswaService extends GetConnect {
@@ -12,12 +13,23 @@ class SiswaService extends GetConnect {
   final String resetPasswordUrl = '${apiBaseUrl}resetPasswordSiswa/';
   final String editDataSiswaUrl = '${apiBaseUrl}editDataSiswa/';
   final String editPasswordSiswaUrl = '${apiBaseUrl}editPasswordSiswa/';
+  final String detailSiswaUrl = '${apiBaseUrl}detailSiswa/';
 
   Future<ListSiswaModel?> getAllData() async {
     final response = await get(allSiswa);
 
     if (response.statusCode == HttpStatus.ok) {
       return ListSiswaModel.fromJson(response.body);
+    } else {
+      return null;
+    }
+  }
+
+  Future<SiswaModel?> getDetailSiswa(String id) async {
+    final response = await get(detailSiswaUrl + id);
+
+    if (response.statusCode == HttpStatus.ok) {
+      return SiswaModel.fromJson(response.body);
     } else {
       return null;
     }

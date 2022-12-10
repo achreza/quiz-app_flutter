@@ -8,7 +8,9 @@ class HasilView extends GetView<WelcomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HasilView'),
+        title: Text('HASIL',
+            style: TextStyle(
+                fontSize: 24, letterSpacing: 2, fontWeight: FontWeight.w800)),
         centerTitle: true,
       ),
       body: Center(
@@ -18,12 +20,8 @@ class HasilView extends GetView<WelcomeController> {
                 height: double.infinity,
                 child: Column(
                   children: [
-                    Text(
-                      "Total Skor : ${controller.hasilQuiz!.data!.totalSkor.toString()}",
-                      style: TextStyle(fontSize: 20),
-                    ),
                     Container(
-                      height: 500,
+                      height: 450,
                       child: ListView.builder(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
@@ -43,6 +41,30 @@ class HasilView extends GetView<WelcomeController> {
                                   .questions[idQuiz - 1].options[idHasil]),
                             );
                           }),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        controller.getPdf(controller.datauser.id.toString());
+                      },
+                      child: Center(
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: 300,
+                          height: 60,
+                          decoration: BoxDecoration(
+                              color: Color(0xFFffc300),
+                              borderRadius: BorderRadius.circular(5)),
+                          child: Text(
+                            "LIHAT PDF",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ),
                     )
                   ],
                 ),

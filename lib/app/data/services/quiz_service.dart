@@ -5,12 +5,14 @@ import 'package:get/get.dart';
 import 'package:self_care_app/app/data/dto/requests/save_quiz_request.dart';
 import 'package:self_care_app/app/data/dto/responses/hasil_quiz_response.dart';
 import 'package:self_care_app/app/data/dto/responses/list_pengisi.dart';
+import 'package:self_care_app/app/data/dto/responses/detail_pdf_response.dart';
 import 'package:self_care_app/constant.dart';
 
 class QuizService extends GetConnect {
   final String saveQuizUrl = '${apiBaseUrl}quizSave';
   final String listPengisiUrl = '${apiBaseUrl}listPengisi';
   final String quizTiapSiswaUrl = '${apiBaseUrl}quizResult/';
+  final String detailPdfUrl = '${apiBaseUrl}quizPdf/';
 
   Future<String> saveQuiz(SaveQuizRequestModel model) async {
     final response = await post(saveQuizUrl, model.toJson());
@@ -48,6 +50,18 @@ class QuizService extends GetConnect {
     final ListPengisiModel datas = ListPengisiModel.fromJson(response.body);
 
     if (response.statusCode == HttpStatus.ok) {
+      return datas;
+    } else {
+      return null;
+    }
+  }
+
+  Future<DetailPdfResponse?> detailPdf(String id) async {
+    print(id);
+    final response = await get(detailPdfUrl + id);
+    final DetailPdfResponse datas = DetailPdfResponse.fromJson(response.body);
+
+    if (response.statusCode == 200) {
       return datas;
     } else {
       return null;
