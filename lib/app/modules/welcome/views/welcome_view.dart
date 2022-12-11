@@ -32,7 +32,7 @@ class WelcomeView extends GetView<WelcomeController> {
                         children: [
                           Spacer(flex: 2), //2/6
                           Text(
-                            "Inventori Kesiapan Pranikah Siswa SMA",
+                            "Inventori Tingkat Self Love",
                             style: Theme.of(context)
                                 .textTheme
                                 .headline4!

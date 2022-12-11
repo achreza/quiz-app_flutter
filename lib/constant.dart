@@ -13,13 +13,13 @@ const kPrimaryGradient = LinearGradient(
 );
 
 const double kDefaultPadding = 20.0;
-const apiBaseUrl = 'https://www.quisapp.my.id/api2/';
+const apiBaseUrl = 'https://www.quisapp.my.id/api/';
 
 // colors
 const Color kRichBlack = Color(0xFF000814);
 const Color kOxfordBlue = Color(0xFF001D3D);
-const Color kPrussianBlue = Color(0xFF003566);
-const Color kMikadoYellow = Color(0xFFffc300);
+const Color kPrussianBlue = Color.fromARGB(255, 5, 52, 97);
+const Color kMikadoYellow = Color.fromARGB(255, 255, 255, 255);
 const Color kDavysGrey = Color(0xFF4B5358);
 const Color kGrey = Color(0xFF303030);
 

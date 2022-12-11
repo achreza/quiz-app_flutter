@@ -82,40 +82,15 @@ class QuestionController extends GetxController
   void checkAns(Question question, int selectedIndex) {
     // print(_questionNumber);
     int num = _questionNumber.toInt();
-    List<int> unfavorable = [
-      6,
-      14,
-      15,
-      16,
-      21,
-      26,
-      27,
-      35,
-      39,
-      40,
-      51,
-      64,
-      69,
-      75,
-      78,
-      80
-    ];
-    if (unfavorable.contains(num)) {
-      print('unfavorable');
-      totalPoint.value += selectedIndex + 1;
-    } else {
-      print('favorable');
-      if (selectedIndex == 0) {
-        totalPoint.value += 5;
-      } else if (selectedIndex == 1) {
-        totalPoint.value += 4;
-      } else if (selectedIndex == 2) {
-        totalPoint.value += 3;
-      } else if (selectedIndex == 3) {
-        totalPoint.value += 2;
-      } else if (selectedIndex == 4) {
-        totalPoint.value += 1;
-      }
+
+    if (selectedIndex == 0) {
+      totalPoint.value += 4;
+    } else if (selectedIndex == 1) {
+      totalPoint.value += 3;
+    } else if (selectedIndex == 2) {
+      totalPoint.value += 2;
+    } else if (selectedIndex == 3) {
+      totalPoint.value += 1;
     }
 
     _isAnswered = true;
