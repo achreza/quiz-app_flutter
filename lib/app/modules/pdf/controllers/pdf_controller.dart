@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:self_care_app/app/data/dto/responses/detail_pdf_response.dart';
 import 'package:self_care_app/app/data/dto/responses/hasil_quiz_response.dart';
+import 'package:self_care_app/app/data/dto/responses/list_pengisi.dart';
 import 'package:self_care_app/app/data/models/question.dart';
 import 'package:self_care_app/app/data/models/siswa.dart';
 import 'package:self_care_app/app/data/services/quiz_service.dart';
@@ -15,6 +16,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:open_file/open_file.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:self_care_app/app/routes/app_pages.dart';
 
 class PdfController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -31,7 +33,7 @@ class PdfController extends GetxController
   SiswaModel? detailSiswa;
 
   HasilQuizResponse? hasilQuiz;
-  String idSiswa = Get.arguments;
+  final Message quizData = Get.arguments;
 
   List<String> selfContact = [
     "Anda memiliki self-contact yang kurang. Hal ini menunjukkan bahwa Anda masih belum bisa memberi perhatian pada diri sendiri. ",
@@ -62,23 +64,39 @@ class PdfController extends GetxController
       .toList();
 
   void getHasilQuiz() async {
+    isLoading(true);
     HasilQuizResponse? response =
-        await _quizService!.respoonseQuizTiapSiswa(idSiswa.toString());
+        await _quizService!.respoonseQuizTiapSiswa(quizData.idSiswa.toString());
     hasilQuiz = response;
     // print(idSiswa);
     isLoading(false);
   }
 
+  void deleteQuiz(String id) async {
+    String response = await _quizService!.deleteQuiz(id);
+    Get.defaultDialog(
+        middleText: response,
+        textConfirm: 'OK',
+        confirmTextColor: Colors.white,
+        onConfirm: () {
+          Get.offAllNamed(Routes.ADMIN);
+          getHasilQuiz();
+        });
+  }
+
   void getDetailSiswa() async {
-    print(idSiswa);
-    SiswaModel? response = await _siswaService!.getDetailSiswa(idSiswa);
+    print(quizData.idSiswa.toString());
+    SiswaModel? response =
+        await _siswaService!.getDetailSiswa(quizData.idSiswa.toString());
     detailSiswa = response;
-    // print(idSiswa);
+    // print(quizData.idSiswa.toString());
     isLoading(false);
   }
 
   void getPdf() async {
-    DetailPdfResponse? response = await _quizService!.detailPdf(idSiswa);
+    int totalSkor = int.parse(quizData.totalSkor.toString());
+    DetailPdfResponse? response =
+        await _quizService!.detailPdf(quizData.idSiswa.toString());
     double persentase1 = double.parse(response!.persentase![0]);
     double persentase2 = double.parse(response!.persentase![1]);
     double persentase3 = double.parse(response!.persentase![2]);
@@ -89,7 +107,16 @@ class PdfController extends GetxController
         : persentase_total >= 51
             ? "Sedang"
             : "Rendah";
-    print("persentase total : " + persentase_total.toString());
+    print("persentase 1 : " + persentase1.toString());
+    print("persentase 2 : " + persentase2.toString());
+    print("persentase 3 : " + persentase3.toString());
+
+    List<String> hasilAkhir = [
+      "Anda memiliki tingkat self-love yang tinggi. Hal ini menunjukkan bahwa anda sudah mampu menerapkan self-love pada diri anda dengan sangat baik.",
+      "Anda memiliki tingkat self-love yang sedang. Hal ini menunjukkan bahwa anda sudah cukup baik dalam menerapkan self-love pada diri anda, namun hal ini bisa lebih ditingkatkan lagi untuk mencapai tingkat self-love yang lebih baik.",
+      "Anda memiliki tingkat self-love yang rendah. Hal ini menunjukkan bahwa anda belum mampu menerapkan self-love pada diri anda sendiri. "
+    ];
+
     final pdf = pw.Document();
     final image = pw.MemoryImage(
       (await rootBundle.load('assets/kop-fix.png')).buffer.asUint8List(),
@@ -295,9 +322,9 @@ class PdfController extends GetxController
                             : "Rendah")),
                 pw.Container(
                     alignment: pw.Alignment.topLeft,
-                    child: pw.Text(persentase2 >= 76
+                    child: pw.Text(persentase1 >= 76
                         ? selfContact[2]
-                        : persentase2 >= 51
+                        : persentase1 >= 51
                             ? selfContact[1]
                             : selfContact[0])),
               ]),
@@ -341,24 +368,27 @@ class PdfController extends GetxController
                             : "Rendah")),
                 pw.Container(
                     alignment: pw.Alignment.topLeft,
-                    child: pw.Text(persentase2 >= 76
+                    child: pw.Text(persentase3 >= 76
                         ? selfLove[2]
-                        : persentase2 >= 51
+                        : persentase3 >= 51
                             ? selfLove[1]
                             : selfLove[0])),
               ]),
             ]),
           ),
           pw.SizedBox(height: 5),
-          pw.Text(
-              "Dari data di atas, dapat diketahui bahwa  ${response!.nama}, memiliki tingkat self-love yang ${tingkat} Hal ini menunjukkan bahwa anda sudah mampu menerapkan self-love pada diri anda dengan sangat baik."),
+          totalSkor >= 142
+              ? pw.Text(hasilAkhir[0])
+              : totalSkor <= 141 && totalSkor >= 95
+                  ? pw.Text(hasilAkhir[1])
+                  : pw.Text(hasilAkhir[2])
         ]),
       ); // Center
     }));
     Uint8List bytes = await pdf.save();
 
     final dir = await getApplicationDocumentsDirectory();
-    final file = File('${dir.path}/hasil${idSiswa}.pdf');
+    final file = File('${dir.path}/hasil${quizData.idSiswa}.pdf');
 
     await file.writeAsBytes(bytes);
 

@@ -10,6 +10,14 @@ class PdfView extends GetView<PdfController> {
       appBar: AppBar(
         title: Text('Hasil'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: () {
+              controller.deleteQuiz(controller.quizData.id.toString());
+            },
+          ),
+        ],
       ),
       body: Obx(() => Center(
             child: controller.isLoading.value == true

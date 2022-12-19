@@ -13,9 +13,13 @@ class QuizService extends GetConnect {
   final String listPengisiUrl = '${apiBaseUrl}listPengisi';
   final String quizTiapSiswaUrl = '${apiBaseUrl}quizResult/';
   final String detailPdfUrl = '${apiBaseUrl}quizPdf/';
+  final String deleteQuizUrl = '${apiBaseUrl}deleteQuiz/';
 
   Future<String> saveQuiz(SaveQuizRequestModel model) async {
+    print("ini didalam Service");
     final response = await post(saveQuizUrl, model.toJson());
+
+    print(response.toString());
 
     if (response.statusCode == HttpStatus.ok) {
       return "success";
@@ -65,6 +69,17 @@ class QuizService extends GetConnect {
       return datas;
     } else {
       return null;
+    }
+  }
+
+  Future<String> deleteQuiz(String id) async {
+    print(id);
+    final response = await get(deleteQuizUrl + id);
+
+    if (response.statusCode == 200) {
+      return "Data berhasil dihapus";
+    } else {
+      return "Data gagal dihapus";
     }
   }
 }

@@ -2,7 +2,7 @@
     package="com.azer.self_care_app">
    <application
         android:usesCleartextTraffic="true"
-        android:label="self_care_app"
+        android:label="Self Love"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
